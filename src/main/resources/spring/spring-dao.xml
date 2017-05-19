@@ -56,7 +56,7 @@
     <!--<context:component-scan base-package="dao" />-->
     <!--<context:component-scan base-package="service" />-->
 
-    <context:property-placeholder location="classpath:props/db.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:props/*.properties" ignore-unresolvable="true"/>
     <!-- mysql连接的基本配置，使用的是spring提供的 DriverManagerDataSource-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${db.driver}"/>
@@ -84,4 +84,17 @@
 
     <context:component-scan base-package="dao"/>
     <context:component-scan base-package="service"/>
+
+    <bean id="scheduleManagerFactory" class="com.taobao.pamirs.schedule.strategy.TBScheduleManagerFactory" init-method="init">
+        <property name="zkConfig">
+            <map>
+                <entry key="zkConnectString" value="${schedule.zk.url}" />
+                <entry key="rootPath" value="${schedule.zk.dir}" />
+                <entry key="zkSessionTimeout" value="${schedule.zk.timeout}" />
+                <entry key="userName" value="${schedule.zk.username}" />
+                <entry key="password" value="${schedule.zk.password}" />
+                <entry key="isCheckParentPath" value="true" />
+            </map>
+        </property>
+    </bean>
 </beans>

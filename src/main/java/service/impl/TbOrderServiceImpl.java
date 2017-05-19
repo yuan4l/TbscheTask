@@ -42,7 +42,7 @@ public class TbOrderServiceImpl implements TbOrderService {
         }
     }
 
-    public List<TbOrderDto> getTbOrderList(String buildDate) {
+    public List<TbOrderDto> getTbOrderList(String buildDate) throws Exception{
 
         TbOrderDto tbOrderDto = new TbOrderDto();
         tbOrderDto.setBuildDate(buildDate);

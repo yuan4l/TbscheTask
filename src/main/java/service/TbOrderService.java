@@ -12,7 +12,6 @@ import java.util.List;
 public interface TbOrderService {
     /**
      * ≤Â»Îµ•æ›
-//     * @param tbOrderDto
      * @throws Exception
      */
     void insert() throws Exception;
@@ -22,5 +21,5 @@ public interface TbOrderService {
      * @param buildDate
      * @return
      */
-    List<TbOrderDto> getTbOrderList(String buildDate);
+    List<TbOrderDto> getTbOrderList(String buildDate) throws Exception;
 }
