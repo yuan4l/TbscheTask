@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.TbOrderDao">
+    <resultMap id="resultMap" type="TbOrderDto">
+        <id     property="id"            column="id"              jdbcType="INTEGER"  javaType="java.lang.Integer" />
+        <result property="billNumber"    column="bill_number"     jdbcType="VARCHAR"  javaType="java.lang.String" />
+        <result property="buildDate"     column="build_date"      jdbcType="VARCHAR"  javaType="java.lang.String" />
+        <result property="customer"      column="customer"        jdbcType="VARCHAR"  javaType="java.lang.String" />
+        <result property="goodsName"     column="goods_name"      jdbcType="VARCHAR"  javaType="java.lang.String" />
+        <result property="Amount"        column="amount"          jdbcType="DECIMAL"  javaType="java.math.BigDecimal" />
+        <result property="saleMoney"     column="sale_money"      jdbcType="DECIMAL"  javaType="java.math.BigDecimal" />
+    </resultMap>
+
+    <sql id="columns">
+        id,
+        bill_number,
+        build_date,
+        customer,
+        goods_name,
+        amount,
+        sale_money
+    </sql>
+
+    <sql id="conditions">
+        <if test="id != null">
+            and id = #{id, jdbcType=INTEGER}
+        </if>
+        <if test="billNumber != null">
+            and bill_number = #{billNumber, jdbcType=VARCHAR}
+        </if>
+        <if test="buildDate != null">
+            and build_date = #{buildDate, jdbcType=VARCHAR}
+        </if>
+        <if test="customer != null">
+            and customer = #{customer, jdbcType=VARCHAR}
+        </if>
+        <if test="goodsName != null">
+            and goods_name = #{goodsName, jdbcType=VARCHAR}
+        </if>
+        <if test="Amount != null">
+            and amount = #{Amount, jdbcType=DECIMAL}
+        </if>
+        <if test="saleMoney != null">
+            and sale_money = #{saleMoney, jdbcType=DECIMAL}
+        </if>
+    </sql>
+
+    <sql id="select">
+        select
+        <include refid="columns" />
+        from
+        tb_order
+        <where>
+            <include refid="conditions" />
+        </where>
+    </sql>
+
+    <insert id="insert" parameterType="TbOrderDto">
+        insert into tb_order
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            id,
+            <if test="billNumber != null">
+                bill_number,
+            </if>
+            <if test="buildDate != null">
+                build_date,
+            </if>
+            <if test="customer != null">
+                customer,
+            </if>
+            <if test="goodsName != null">
+                goods_name,
+            </if>
+            <if test="Amount != null">
+                amount,
+            </if>
+            <if test="saleMoney != null">
+                sale_money,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            #{id, jdbcType=INTEGER},
+            <if test="billNumber != null">
+                #{billNumber, jdbcType=VARCHAR},
+            </if>
+            <if test="buildDate != null">
+                #{buildDate, jdbcType=VARCHAR},
+            </if>
+            <if test="customer != null">
+                #{customer, jdbcType=VARCHAR},
+            </if>
+            <if test="goodsName != null">
+                #{goodsName, jdbcType=VARCHAR},
+            </if>
+            <if test="Amount != null">
+                #{Amount, jdbcType=DECIMAL},
+            </if>
+            <if test="saleMoney != null">
+                #{saleMoney, jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <select id="get" parameterType="java.lang.Long" resultMap="resultMap">
+        select
+        <include refid="columns" />
+        from
+        tb_order
+        where
+        id = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="findList" parameterType="TbOrderDto" resultMap="resultMap">
+        <include refid="select"/>
+    </select>
+</mapper>
