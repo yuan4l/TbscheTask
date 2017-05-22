@@ -48,15 +48,15 @@ public class TbOrderServiceImpl implements TbOrderService {
 
     public List<TbOrderDto> getTbOrderList(String buildDate) throws Exception {
 
-        TbOrderDto tbOrderDto = new TbOrderDto();
-        tbOrderDto.setBuildDate(buildDate);
-
-        List<TbOrderDto> orderDtoList = tbOrderDao.findList(tbOrderDto);
+        List<TbOrderDto> orderDtoList = tbOrderDao.findListByDate(buildDate);
         return orderDtoList;
     }
 
     public boolean insertTbOrderCopy(TbOrderDto tbOrderDto) {
         int flag = tbOrderCopyDao.insert(tbOrderDto);
+        System.out.println("************");
+        System.out.println(flag);
+        System.out.println("************");
         return flag == 1 ? true : false;
     }
 }
