@@ -22,4 +22,11 @@ public interface TbOrderService {
      * @return
      */
     List<TbOrderDto> getTbOrderList(String buildDate) throws Exception;
+
+    /**
+     * 数据添加进copy
+     * @param tbOrderDto
+     * @return
+     */
+    boolean insertTbOrderCopy(TbOrderDto tbOrderDto);
 }

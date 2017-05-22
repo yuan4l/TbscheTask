@@ -113,4 +113,12 @@
     <select id="findList" parameterType="TbOrderDto" resultMap="resultMap">
         <include refid="select"/>
     </select>
+    <select id="findListByDate" parameterType="java.lang.String" resultMap="resultMap">
+        select
+        <include refid="columns" />
+        from
+        tb_order
+        where
+        build_date = #{buildDate, jdbcType=VARCHAR}
+    </select>
 </mapper>

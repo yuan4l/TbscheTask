@@ -1,5 +1,6 @@
 package service.impl;
 
+import dao.TbOrderCopyDao;
 import dao.TbOrderDao;
 import dto.TbOrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class TbOrderServiceImpl implements TbOrderService {
 
     @Autowired
     private TbOrderDao tbOrderDao;
+
+    @Autowired
+    private TbOrderCopyDao tbOrderCopyDao;
 
     public void insert() throws Exception {
 
@@ -42,12 +46,17 @@ public class TbOrderServiceImpl implements TbOrderService {
         }
     }
 
-    public List<TbOrderDto> getTbOrderList(String buildDate) throws Exception{
+    public List<TbOrderDto> getTbOrderList(String buildDate) throws Exception {
 
         TbOrderDto tbOrderDto = new TbOrderDto();
         tbOrderDto.setBuildDate(buildDate);
 
         List<TbOrderDto> orderDtoList = tbOrderDao.findList(tbOrderDto);
         return orderDtoList;
+    }
+
+    public boolean insertTbOrderCopy(TbOrderDto tbOrderDto) {
+        int flag = tbOrderCopyDao.insert(tbOrderDto);
+        return flag == 1 ? true : false;
     }
 }

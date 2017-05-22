@@ -84,17 +84,19 @@
 
     <context:component-scan base-package="dao"/>
     <context:component-scan base-package="service"/>
+    <context:component-scan base-package="work"/>
 
-    <bean id="scheduleManagerFactory" class="com.taobao.pamirs.schedule.strategy.TBScheduleManagerFactory" init-method="init">
-        <property name="zkConfig">
-            <map>
-                <entry key="zkConnectString" value="${schedule.zk.url}" />
-                <entry key="rootPath" value="${schedule.zk.dir}" />
-                <entry key="zkSessionTimeout" value="${schedule.zk.timeout}" />
-                <entry key="userName" value="${schedule.zk.username}" />
-                <entry key="password" value="${schedule.zk.password}" />
-                <entry key="isCheckParentPath" value="true" />
-            </map>
-        </property>
-    </bean>
+
+    <!--<bean id="scheduleManagerFactory" class="com.taobao.pamirs.schedule.strategy.TBScheduleManagerFactory" init-method="init">-->
+        <!--<property name="zkConfig">-->
+            <!--<map>-->
+                <!--<entry key="zkConnectString" value="${schedule.zk.url}" />-->
+                <!--<entry key="rootPath" value="${schedule.zk.dir}" />-->
+                <!--<entry key="zkSessionTimeout" value="${schedule.zk.timeout}" />-->
+                <!--<entry key="userName" value="${schedule.zk.username}" />-->
+                <!--<entry key="password" value="${schedule.zk.password}" />-->
+                <!--<entry key="isCheckParentPath" value="true" />-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
 </beans>

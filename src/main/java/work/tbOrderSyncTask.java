@@ -14,12 +14,16 @@ import java.util.List;
  * Created by yuan4j on 2017/5/19.
  */
 @Component
-public class tbOrderSyncTask extends AbstractSyncTask {
+public class TbOrderSyncTask extends AbstractSyncTask {
 
     private static final Logger logger = LoggerFactory.getLogger("tbOrderSyncTask");
 
     @Autowired
     private TbOrderService tbOrderService;
+
+    protected boolean insertTbOrderCopy(TbOrderDto tbOrderDto) {
+        return tbOrderService.insertTbOrderCopy(tbOrderDto);
+    }
 
     protected List<TbOrderDto> getTbOrderDtos(String taskParameter, String ownSign, int taskItemNum, List<TaskItemDefine> taskItemList, int eachFetchDataNum) {
         String buildDate = taskItemList.get(0).getTaskItemId();

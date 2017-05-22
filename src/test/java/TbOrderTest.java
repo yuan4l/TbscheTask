@@ -16,9 +16,6 @@ import service.TbOrderService;
 public class TbOrderTest {
 
     @Autowired
-    private TbOrderDao tbOrderDao;
-
-    @Autowired
     private TbOrderService tbOrderService;
 
     @Test
